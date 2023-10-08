@@ -15,7 +15,7 @@
 
 ## Intro
 
-Youtube video accompanies the tutorial.
+[Youtube video](https://youtu.be/NlFz5_pb7_Q) accompanies the tutorial.
 
 Project is dedicated to showcasing and exploring PostgreSQL database Full Text Search capabilities.
 
@@ -25,9 +25,9 @@ To start the postgres docker container run:
 ```
 docker compose up -d
 ```
-When container starts up, database should be available on localhost:5432 with default db (*fts*), username(*user*) and password(*password*).
+When container starts up, database should be available on localhost:5432 with default db (*fts*), username(*user*) and password(*pass*).
 
-Base tables and data installed with initial scripts: 
+Couple of tables for movies and quotes and related data is installed with initial scripts: 
 
 ```
 select   *
