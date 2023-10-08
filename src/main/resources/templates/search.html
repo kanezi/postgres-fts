@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{fragments/skeleton::layout (~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <!-- You MUST include jQuery 3.4+ before Fomantic -->
+    <meta data-th-replace="~{fragments/scripts::js_css}"/>
+    <title>Search</title>
+</head>
+<body>
+
+<div class="ui fluid container" data-th-fragment="content">
+    <div class="ui padded basic segment">
+        <!--        <h1 class="ui dividing header">PostgreSQL Full Text Search (FTS)</h1>-->
+
+        <div class="ui padded segment">
+
+            <h2 class="ui dividing sub header">
+                Movies / Quotes search
+            </h2>
+
+            <div class="ui padded basic segment">
+                <form data-th-action="@{/search}" class="ui form" method="post" id="search_form">
+
+                    <div class="ui fluid action input">
+                        <input type="text" placeholder="Search..." name="q" id="q" data-th-value="${q}"
+                               autofocus="autofocus">
+                        <button class="ui teal icon button">
+                            <i class="search icon"></i>Filter
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="ui segment" data-th-if="${docs}">
+
+            <table class="ui small table" data-th-if="${not #lists.isEmpty(docs)}">
+                <thead>
+                <tr>
+                    <th>type</th>
+                    <th>title</th>
+                    <th>description</th>
+                    <th>meta</th>
+                    <th>ranking</th>
+                </tr>
+                </thead>
+
+                <tbody class="results">
+                <tr data-th-each="d: ${docs}">
+                    <td><a data-th-href="${d.url}" data-th-text="${d.type}">link</a></td>
+                    <td data-th-utext="${d.title}"></td>
+                    <td data-th-utext="${d.description}"></td>
+                    <td data-th-utext="${d.meta}"></td>
+                    <td data-th-text="${d.ranking}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="ui container" data-th-if="${#lists.isEmpty(docs)}">
+
+                <div class="ui warning message">
+                    <div class="ui dividing sub header">
+                        Nothing found!
+                    </div>
+                    <div data-th-remove="tag" data-th-if="${misspelling}">
+                        <span data-th-if="${not #lists.isEmpty(misspelling)}">Did you mean?</span>
+
+                        <div class="ui relaxed divided link list">
+                            <a data-th-attr="onclick=|search_misspelled('${m.word}')|" class="item" data-th-each="m : ${misspelling}"
+                               data-th-text="${m.word}">
+                                suggestion
+                            </a>
+
+                            <script>
+                                function search_misspelled(correct){
+                                    $("#q").val(correct);
+                                    $("#search_form").submit();
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

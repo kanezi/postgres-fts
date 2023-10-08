@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{fragments/skeleton::layout (~{::quote_content})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote</title>
+</head>
+<body>
+
+<div class="ui padded segment container" data-th-fragment="quote_content">
+
+    <div class="ui left aligned container">
+        <a data-th-href="@{/}" class="ui tertiary icon button">
+            <i class="ui arrow left icon"></i>Back to search
+        </a>
+        <h1 class="ui dividing header">
+            Quote
+        </h1>
+    </div>
+
+    <div class="ui massive fluid card" data-th-if="${quote}">
+        <div class="content">
+            <div class="header" data-th-text="${quote.author}">Author Name</div>
+            <div class="description">
+                <q data-th-text="${quote.quote}"></q>
+            </div>
+        </div>
+        <div class="extra content" data-th-if="${quote.tags}">
+            <i class="tag icon"></i>
+            <span data-th-text="${quote.tags}"></span>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

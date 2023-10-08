@@ -1,0 +1,37 @@
+<div class="ui basic padded segment">
+
+    <div class="ui secondary menu" data-th-fragment="menu">
+        <div class="menu">
+            <div class="ui basic padded segment">
+                <h1 class="ui title header">
+                    PostgreSQL Full Text Search (FTS)
+                </h1>
+            </div>
+        </div>
+        <div class="right menu">
+
+            <div class="ui right aligned horizontal search item">
+                <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
+            </div>
+
+            <script>
+                $('.ui.search')
+                    .search({
+                        apiSettings: {
+                            url: '/api/search?q={query}'
+                        },
+                        minCharacters: 2
+                    });
+
+            </script>
+
+        </div>
+    </div>
+
+
+
+</div>

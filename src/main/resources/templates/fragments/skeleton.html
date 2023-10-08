@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" data-th-fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta data-th-replace="~{fragments/scripts::js_css}">
+    <style>
+        .result em {
+            color: red !important;
+        }
+    </style>
+    <title>Postgres FTS</title>
+</head>
+<body>
+<div class="ui container">
+
+    <div data-th-replace="~{fragments/header::menu}">
+    </div>
+
+    <div class="ui two column centered grid">
+        <div data-th-replace="${content}"></div>
+    </div>
+</div>
+
+
+</body>
+</html>
